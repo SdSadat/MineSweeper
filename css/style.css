@@ -1,0 +1,122 @@
+* {
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+body {
+  background-color: #7ea9ae;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  
+}
+
+nav{
+  position: absolute;
+  top: 0;
+  display: flex;
+  background-color: rgb(42, 189, 145);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+
+.container{
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.grid{
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+}
+
+.grid div{
+  width: 10%;
+  height: 10%;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.grid .bomb{
+  /* background-color: red; */
+}
+.grid .bomb:hover{
+  background-color: darkred;
+}
+
+
+
+.grid .checked{
+  background-color: yellowgreen;
+}
+
+footer{
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 10px;
+  font-size: 1.5rem;
+  color: white;
+  margin: 10px 0 0 0;
+}
+footer ul{
+  list-style: none;
+  display: flex;
+  padding: 5px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+footer ul li{
+  font-size: 2rem;
+  margin: 10px;
+  cursor: pointer;
+}
+footer ul li i{
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  padding: 10px;
+  transition: 0.1s all ease;
+}
+footer ul li i:hover{
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(8px);
+}
