@@ -42,7 +42,10 @@ nav{
   width: 100%;
 }
 
-
+.top{
+  display: flex;
+  justify-content: space-between;
+}
 
 .grid{
   display: flex;
@@ -70,12 +73,10 @@ nav{
 }
 
 #reset{
+  background-color:rgb(119, 119, 119);
   color: black;
 }
 
-.grid .bomb{
-  /* background-color: red; */
-}
 .grid .bomb:hover{
   background-color: darkred;
 }
@@ -84,6 +85,13 @@ nav{
 
 .grid .checked{
   background-color: yellowgreen;
+}
+
+
+
+.flags,.score,.timer{
+  display: flex;
+  gap: 5px;
 }
 
 footer{

@@ -1,13 +1,14 @@
 let width = 10;
 let size = width * width;
-
 let bombNumber = 20;
-
+let isGameOver = false;
+let flagsLeft = bombNumber;
+let timerInterval;
+let timeElapsed = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     function createBoard() {
-        let isGameOver = false;
-        let flags = 0;
+
         const bombsArray = Array(bombNumber).fill('bomb');
         const emptyArray = Array(size - bombNumber).fill('valid');
 
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const shuffledArray = gameArray.sort(() => Math.random() - 0.5);
 
         let gridElement = document.querySelector('.grid');
+        gridElement.innerHTML = '';
+        let flagsElement = document.getElementById('flagsLeft');
 
         for (let i = 0; i < size; i++) {
             let cell = document.createElement('div');
@@ -28,11 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.oncontextmenu = function (e) {
                 e.preventDefault();
                 addFlag(cell);
-            }
+            };
         }
 
         let gridArray = Array.from(document.querySelectorAll('.grid div'));
-
 
         for (let i = 0; i < size; i++) {
             const atleftEdge = (i % width === 0);
@@ -53,25 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!atTop && !atleftEdge && shuffledArray[i - 1 - width] === 'bomb') total++;
 
                 gridArray[i].setAttribute('data', total);
-
             }
-
         }
 
         function addFlag(cell) {
             if (isGameOver) return;
-            if (!cell.classList.contains('checked') && (flags < bombNumber)) {
+            if (!cell.classList.contains('checked') && (flagsLeft > 0)) {
                 if (!cell.classList.contains('flag')) {
                     cell.classList.add('flag');
                     cell.innerHTML = 'F';
-                    flags++;
-                    console.log(flags);
+                    flagsLeft--;
+                    flagsElement.innerHTML = `${flagsLeft}`;
                     checkForWin();
-                }
-                else {
+                } else {
                     cell.classList.remove('flag');
-                    cell.innerHTML = ''
-                    flags--;
+                    cell.innerHTML = '';
+                    flagsLeft++;
+                    flagsElement.innerHTML = `${flagsLeft}`;
                 }
             }
         }
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameOver();
                 return;
             }
-            if (cell.classList.contains('checked') || cell.classList.contains('flaged')) return;
+            if (cell.classList.contains('checked') || cell.classList.contains('flag')) return;
             else {
                 let total = cell.getAttribute('data');
                 if (total != 0) {
@@ -145,19 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     click(newCell);
                 }
             }, 10);
-
         }
 
-
         function gameOver() {
-            console.log('GameOver');
-
+            console.log('Game Over');
             isGameOver = true;
             gridArray.forEach(cell => {
                 if (cell.classList.contains('bomb')) {
                     cell.innerHTML = 'B';
                 }
-            })
+            });
         }
 
         function checkForWin() {
@@ -166,23 +163,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (gridArray[i].classList.contains('flag') && gridArray[i].classList.contains('bomb')) {
                     matches++;
                 }
-
             }
             if (matches === bombNumber) {
-                console.log("you won");
+                console.log("You won");
                 isGameOver = true;
             }
-            console.log(matches);
         }
 
+        document.getElementById('reset').addEventListener('click', resetGame);
 
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            isGameOver = false;
+            flagsLeft = bombNumber;
+            timeElapsed = 0;
+            document.getElementById('timer').innerHTML = timeElapsed;
+            document.getElementById('flagsLeft').innerHTML = flagsLeft;
+            startTimer();
+            createBoard();
+        }
+    }
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            timeElapsed++;
+            document.getElementById('timer').innerHTML = timeElapsed;
+        }, 1000);
     }
 
     createBoard();
-
-
-
-
-})
-
-
+    startTimer();
+});

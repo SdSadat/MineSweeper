@@ -16,21 +16,36 @@
     </nav>
     
     <div class="container">
-        <div class="grid"></div>
+        <!-- <div class="left">
+            <h3>Rules</h3>
+            <p>Minesweeper rules are very simple.
+                The board is divided into cells, with mines randomly distributed. 
+                To win, you need to open all the cells.
+                 The number on a cell shows the number of mines adjacent to it.
+                  Using this information, you can determine cells that are safe, 
+                  and cells that contain mines. Cells suspected of being mines can be marked with a flag using the right mouse button.</p>
+        </div> -->
+        <div class="mid">
+            <div class="top">
+                <div class="flags">
+                    <h3>Flags: </h3>
+                    <h3 id="flagsLeft">20</h3>
+                </div>
+                <div class="reset">
+                    <button id="reset"><i class='bx bxs-smile' style='color:#e6ff00'  ></i></button>
+                </div>
+                <div class="timer">
+                    <h3>Time: </h3>
+                    <h3 id="timer">0</h3>
+                    </div>
+            </div>
+            <div class="grid"></div>
+        </div>
 
         <div class="right">
-            <div class="timer">
-
-            </div>
-            <div class="flags">
-
-            </div>
-            <div class="reset">
-                <button id="reset">Reset</button>
-            </div>
-
             <div class="score">
                 <h3>Score: </h3>
+                <h3 id="score">0</h3>
             </div>
 
         </div>
@@ -40,7 +55,7 @@
     <footer>
         <div class="footer">
             <div class="footer-content">
-            <h3>The Tetris</h3>
+            <h3>MineSweeper</h3>
             <p>Developed by <a href="https://github.com/Sdsadat">Sd</a></p>
 
         </div>
